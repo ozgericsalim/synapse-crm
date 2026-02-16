@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synapse Lynk CRM - Secure</title>
+    <title>Synapse Lynk CRM - Online</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Firebase SDK -->
+    <!-- Firebase SDK v10 -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     
     <style>
@@ -61,156 +60,6 @@
         @keyframes backgroundShift {
             0%, 100% { transform: translate(0, 0) rotate(0deg); }
             50% { transform: translate(-10%, -10%) rotate(5deg); }
-        }
-
-        /* LOGIN PAGE STYLES */
-        .login-container {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-
-        .login-box {
-            background: var(--glass-bg);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem;
-            max-width: 450px;
-            width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: slideUp 0.6s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .login-logo {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .login-title {
-            font-size: 2rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, var(--secondary-blue), var(--light-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .login-subtitle {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-label {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
-        }
-
-        .login-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .error-message {
-            background: rgba(255, 107, 157, 0.2);
-            border: 1px solid var(--priority-high);
-            border-radius: 10px;
-            padding: 1rem;
-            color: var(--priority-high);
-            font-size: 0.9rem;
-            text-align: center;
-            display: none;
-        }
-
-        .error-message.active {
-            display: block;
-            animation: shake 0.5s;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-
-        /* APP STYLES (Hidden initially) */
-        #app {
-            display: none;
         }
 
         .container {
@@ -272,12 +121,6 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-        }
-
-        .user-details {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
             padding: 0.75rem 1.5rem;
             background: rgba(74, 144, 226, 0.15);
             border-radius: 50px;
@@ -294,24 +137,6 @@
             justify-content: center;
             font-weight: 600;
             font-size: 1rem;
-        }
-
-        .logout-btn {
-            padding: 0.75rem 1.5rem;
-            background: rgba(255, 107, 157, 0.2);
-            border: 1px solid rgba(255, 107, 157, 0.3);
-            border-radius: 50px;
-            color: var(--priority-high);
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.85rem;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background: rgba(255, 107, 157, 0.3);
-            transform: translateY(-2px);
         }
 
         .sync-indicator {
@@ -353,6 +178,17 @@
             flex-wrap: wrap;
             align-items: center;
             animation: slideUp 0.6s ease-out 0.1s backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .search-box {
@@ -925,6 +761,25 @@
             margin-bottom: 2rem;
         }
 
+        .config-notice {
+            background: rgba(255, 184, 108, 0.15);
+            border: 2px solid var(--priority-medium);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .config-notice h3 {
+            color: var(--priority-medium);
+            margin-bottom: 0.5rem;
+        }
+
+        .config-notice p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -967,101 +822,115 @@
     </style>
 </head>
 <body>
-    <!-- LOGIN PAGE -->
-    <div class="login-container" id="loginPage">
-        <div class="login-box">
-            <div class="login-header">
-                <div class="login-logo">🔐</div>
-                <h1 class="login-title">Synapse Lynk</h1>
-                <p class="login-subtitle">B2B Wellness Services CRM</p>
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="brand-text">
+                    <h1>synapse Lynk</h1>
+                    <p>B2B Wellness Services CRM - Online</p>
+                </div>
             </div>
-
-            <div class="error-message" id="loginError"></div>
-
-            <form class="login-form" id="loginForm">
-                <div class="form-group">
-                    <label class="form-label">E-posta</label>
-                    <input 
-                        type="email" 
-                        class="form-input" 
-                        id="loginEmail" 
-                        required 
-                        placeholder="ornek@email.com"
-                        autocomplete="email"
-                    >
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <div class="sync-indicator">
+                    <div class="sync-dot"></div>
+                    <span>Canlı Senkronize</span>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label">Şifre</label>
-                    <input 
-                        type="password" 
-                        class="form-input" 
-                        id="loginPassword" 
-                        required 
-                        placeholder="••••••••"
-                        autocomplete="current-password"
-                    >
+                <div class="user-info">
+                    <div class="user-avatar">SÖ</div>
+                    <div>
+                        <div style="font-weight: 600;">Salim Özgeriç</div>
+                        <div style="font-size: 0.85rem; color: var(--text-secondary);">Admin</div>
+                    </div>
                 </div>
+            </div>
+        </div>
 
-                <button type="submit" class="login-btn" id="loginBtn">
-                    Giriş Yap
+        <!-- Firebase Konfigürasyon Tamamlandı ✅ -->
+        <div class="config-notice" id="configNotice" style="display: none;">
+            <h3>⚠️ Firebase Yapılandırması Gerekli</h3>
+            <p>Lütfen aşağıdaki script etiketinde Firebase ayarlarınızı yapılandırın ve bu uyarıyı kaldırın.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card" style="animation-delay: 0.1s">
+                <div class="stat-label">Toplam Şirket</div>
+                <div class="stat-value" id="totalCompanies">0</div>
+            </div>
+            <div class="stat-card" style="animation-delay: 0.2s">
+                <div class="stat-label">Yüksek Öncelik</div>
+                <div class="stat-value" id="highPriority">0</div>
+            </div>
+            <div class="stat-card" style="animation-delay: 0.3s">
+                <div class="stat-label">Aktif Anlaşmalar</div>
+                <div class="stat-value" id="activeContracts">0</div>
+            </div>
+            <div class="stat-card" style="animation-delay: 0.4s">
+                <div class="stat-label">Toplam Çalışan</div>
+                <div class="stat-value" id="totalEmployees">0</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Şirket ara...">
+            </div>
+            <div class="filter-group">
+                <select id="categoryFilter">
+                    <option value="">Tüm Kategoriler</option>
+                    <option value="teknoloji">Teknoloji</option>
+                    <option value="finans">Finans</option>
+                    <option value="saglik">Sağlık</option>
+                    <option value="lojistik">Lojistik</option>
+                    <option value="uretim">Üretim</option>
+                    <option value="perakende">Perakende</option>
+                </select>
+                <select id="priorityFilter">
+                    <option value="">Tüm Öncelikler</option>
+                    <option value="high">Yüksek</option>
+                    <option value="medium">Orta</option>
+                    <option value="low">Düşük</option>
+                </select>
+                <select id="contractFilter">
+                    <option value="">Tüm Durumlar</option>
+                    <option value="active">Anlaşmalı</option>
+                    <option value="target">Hedef</option>
+                </select>
+                <button class="btn btn-primary" onclick="openModal()">
+                    <span>➕</span>
+                    Yeni Şirket Ekle
                 </button>
-            </form>
+                <button class="btn btn-primary" onclick="exportToExcel()" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    <span>📥</span>
+                    Excel İndir
+                </button>
+            </div>
+        </div>
+
+        <div class="companies-grid" id="companiesGrid"></div>
+
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-state-icon">🏢</div>
+            <div class="empty-state-text">Henüz şirket eklenmedi</div>
+            <button class="btn btn-primary" onclick="openModal()">İlk Şirketi Ekle</button>
         </div>
     </div>
 
-    <!-- MAIN APP (Hidden by default) -->
-    <div id="app">
-        <div class="container">
-            <div class="header">
-                <div class="logo-section">
-                    <div class="brand-text">
-                        <h1>synapse Lynk</h1>
-                        <p>B2B Wellness Services CRM - Secure</p>
-                    </div>
-                </div>
-                <div class="user-info">
-                    <div class="sync-indicator">
-                        <div class="sync-dot"></div>
-                        <span>Canlı Senkronize</span>
-                    </div>
-                    <div class="user-details">
-                        <div class="user-avatar" id="userAvatar">U</div>
-                        <div>
-                            <div style="font-weight: 600;" id="userName">Kullanıcı</div>
-                            <div style="font-size: 0.85rem; color: var(--text-secondary);" id="userEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fd98909c9491bd98859c908d9198d39e9290">[email&#160;protected]</a></div>
-                        </div>
-                    </div>
-                    <button class="logout-btn" onclick="logout()">🚪 Çıkış</button>
-                </div>
+    <div class="modal" id="companyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">Yeni Şirket Ekle</div>
+                <button class="close-btn" onclick="closeModal()">✕</button>
             </div>
+            <form id="companyForm">
+                <div class="form-group">
+                    <label class="form-label">Şirket Adı *</label>
+                    <input type="text" class="form-input" id="companyName" required>
+                </div>
 
-            <div class="stats-grid">
-                <div class="stat-card" style="animation-delay: 0.1s">
-                    <div class="stat-label">Toplam Şirket</div>
-                    <div class="stat-value" id="totalCompanies">0</div>
-                </div>
-                <div class="stat-card" style="animation-delay: 0.2s">
-                    <div class="stat-label">Yüksek Öncelik</div>
-                    <div class="stat-value" id="highPriority">0</div>
-                </div>
-                <div class="stat-card" style="animation-delay: 0.3s">
-                    <div class="stat-label">Aktif Anlaşmalar</div>
-                    <div class="stat-value" id="activeContracts">0</div>
-                </div>
-                <div class="stat-card" style="animation-delay: 0.4s">
-                    <div class="stat-label">Toplam Çalışan</div>
-                    <div class="stat-value" id="totalEmployees">0</div>
-                </div>
-            </div>
-
-            <div class="controls">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Şirket ara...">
-                </div>
-                <div class="filter-group">
-                    <select id="categoryFilter">
-                        <option value="">Tüm Kategoriler</option>
+                <div class="form-group">
+                    <label class="form-label">Kategori *</label>
+                    <select class="form-select" id="companyCategory" required>
+                        <option value="">Kategori seçin...</option>
                         <option value="teknoloji">Teknoloji</option>
                         <option value="finans">Finans</option>
                         <option value="saglik">Sağlık</option>
@@ -1069,124 +938,70 @@
                         <option value="uretim">Üretim</option>
                         <option value="perakende">Perakende</option>
                     </select>
-                    <select id="priorityFilter">
-                        <option value="">Tüm Öncelikler</option>
-                        <option value="high">Yüksek</option>
-                        <option value="medium">Orta</option>
-                        <option value="low">Düşük</option>
-                    </select>
-                    <select id="contractFilter">
-                        <option value="">Tüm Durumlar</option>
-                        <option value="active">Anlaşmalı</option>
-                        <option value="target">Hedef</option>
-                    </select>
-                    <button class="btn btn-primary" onclick="openModal()">
-                        <span>➕</span>
-                        Yeni Şirket Ekle
-                    </button>
-                    <button class="btn btn-primary" onclick="exportToExcel()" style="background: linear-gradient(135deg, #10b981, #059669);">
-                        <span>📥</span>
-                        Excel İndir
-                    </button>
                 </div>
-            </div>
 
-            <div class="companies-grid" id="companiesGrid"></div>
-
-            <div class="empty-state" id="emptyState" style="display: none;">
-                <div class="empty-state-icon">🏢</div>
-                <div class="empty-state-text">Henüz şirket eklenmedi</div>
-                <button class="btn btn-primary" onclick="openModal()">İlk Şirketi Ekle</button>
-            </div>
-        </div>
-
-        <div class="modal" id="companyModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="modal-title" id="modalTitle">Yeni Şirket Ekle</div>
-                    <button class="close-btn" onclick="closeModal()">✕</button>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Yetkili Kişi</label>
+                        <input type="text" class="form-input" id="contactPerson">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Telefon</label>
+                        <input type="tel" class="form-input" id="contactPhone">
+                    </div>
                 </div>
-                <form id="companyForm">
-                    <div class="form-group">
-                        <label class="form-label">Şirket Adı *</label>
-                        <input type="text" class="form-input" id="companyName" required>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Kategori *</label>
-                        <select class="form-select" id="companyCategory" required>
-                            <option value="">Kategori seçin...</option>
-                            <option value="teknoloji">Teknoloji</option>
-                            <option value="finans">Finans</option>
-                            <option value="saglik">Sağlık</option>
-                            <option value="lojistik">Lojistik</option>
-                            <option value="uretim">Üretim</option>
-                            <option value="perakende">Perakende</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label class="form-label">E-posta</label>
+                    <input type="email" class="form-input" id="contactEmail">
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Yetkili Kişi</label>
-                            <input type="text" class="form-input" id="contactPerson">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Telefon</label>
-                            <input type="tel" class="form-input" id="contactPhone">
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label class="form-label">Adres</label>
+                    <input type="text" class="form-input" id="companyAddress">
+                </div>
 
-                    <div class="form-group">
-                        <label class="form-label">E-posta</label>
-                        <input type="email" class="form-input" id="contactEmail">
-                    </div>
+                <div class="form-group">
+                    <label class="form-label">Çalışan Sayısı</label>
+                    <input type="number" class="form-input" id="employeeCount" min="1">
+                </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Adres</label>
-                        <input type="text" class="form-input" id="companyAddress">
+                <div class="form-group">
+                    <label class="form-label">Öncelik Seviyesi *</label>
+                    <div class="priority-options">
+                        <label class="priority-option high" id="priorityHigh">
+                            <input type="radio" name="priority" value="high" required>
+                            🔴 Yüksek
+                        </label>
+                        <label class="priority-option medium" id="priorityMedium">
+                            <input type="radio" name="priority" value="medium">
+                            🟡 Orta
+                        </label>
+                        <label class="priority-option low" id="priorityLow">
+                            <input type="radio" name="priority" value="low">
+                            🟢 Düşük
+                        </label>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Çalışan Sayısı</label>
-                        <input type="number" class="form-input" id="employeeCount" min="1">
-                    </div>
+                <div class="form-group">
+                    <label class="form-label">Notlar</label>
+                    <textarea class="form-textarea" id="companyNotes" rows="4"></textarea>
+                </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Öncelik Seviyesi *</label>
-                        <div class="priority-options">
-                            <label class="priority-option high" id="priorityHigh">
-                                <input type="radio" name="priority" value="high" required>
-                                🔴 Yüksek
-                            </label>
-                            <label class="priority-option medium" id="priorityMedium">
-                                <input type="radio" name="priority" value="medium">
-                                🟡 Orta
-                            </label>
-                            <label class="priority-option low" id="priorityLow">
-                                <input type="radio" name="priority" value="low">
-                                🟢 Düşük
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Notlar</label>
-                        <textarea class="form-textarea" id="companyNotes" rows="4"></textarea>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="button" class="btn-cancel" onclick="closeModal()">İptal</button>
-                        <button type="submit" class="btn-save">Kaydet</button>
-                    </div>
-                </form>
-            </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal()">İptal</button>
+                    <button type="submit" class="btn-save">Kaydet</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // ==========================================
         // FIREBASE CONFIGURATION
         // ==========================================
+        // Firebase configuration for Synapse Lynk CRM
         const firebaseConfig = {
             apiKey: "AIzaSyAFIpRzUAc6yVU3gggo3lFuLvwcr3EcJPs",
             authDomain: "synapselynk-crm.firebaseapp.com",
@@ -1196,97 +1011,21 @@
             appId: "1:1056799217686:web:141501377a8bed33d6fd37"
         };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // ==========================================
-        // AUTHENTICATION
-        // ==========================================
-        let currentUser = null;
-
-        // Check auth state
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                currentUser = user;
-                showApp();
-                initApp();
-            } else {
-                currentUser = null;
-                showLogin();
-            }
-        });
-
-        // Login form handler
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // Firebase'i başlat
+        let db;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            console.log('✅ Firebase bağlantısı başarılı!');
             
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const btn = document.getElementById('loginBtn');
-            const errorDiv = document.getElementById('loginError');
-
-            btn.disabled = true;
-            btn.textContent = 'Giriş yapılıyor...';
-            errorDiv.classList.remove('active');
-
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-                // onAuthStateChanged will handle the rest
-            } catch (error) {
-                let errorMessage = 'Giriş başarısız oldu.';
-                
-                switch (error.code) {
-                    case 'auth/invalid-email':
-                        errorMessage = 'Geçersiz e-posta adresi.';
-                        break;
-                    case 'auth/user-disabled':
-                        errorMessage = 'Bu hesap devre dışı bırakılmış.';
-                        break;
-                    case 'auth/user-not-found':
-                        errorMessage = 'Bu e-posta adresi kayıtlı değil.';
-                        break;
-                    case 'auth/wrong-password':
-                        errorMessage = 'Yanlış şifre.';
-                        break;
-                    case 'auth/invalid-credential':
-                        errorMessage = 'E-posta veya şifre hatalı.';
-                        break;
-                }
-
-                errorDiv.textContent = errorMessage;
-                errorDiv.classList.add('active');
-                btn.disabled = false;
-                btn.textContent = 'Giriş Yap';
+            // Uyarıyı kaldır
+            const notice = document.getElementById('configNotice');
+            if (notice && firebaseConfig.apiKey !== "BURAYA_API_KEY_YAPIŞTIRIN") {
+                notice.style.display = 'none';
             }
-        });
-
-        // Logout function
-        function logout() {
-            if (confirm('Çıkış yapmak istediğinizden emin misiniz?')) {
-                auth.signOut();
-            }
-        }
-
-        // Show/hide pages
-        function showLogin() {
-            document.getElementById('loginPage').style.display = 'flex';
-            document.getElementById('app').style.display = 'none';
-        }
-
-        function showApp() {
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('app').style.display = 'block';
-            
-            if (currentUser) {
-                // Update user info
-                const email = currentUser.email;
-                const initials = email.substring(0, 2).toUpperCase();
-                document.getElementById('userAvatar').textContent = initials;
-                document.getElementById('userName').textContent = email.split('@')[0];
-                document.getElementById('userEmail').textContent = email;
-            }
+        } catch (error) {
+            console.error('❌ Firebase başlatma hatası:', error);
+            alert('Firebase bağlantısı kurulamadı. Lütfen yapılandırmanızı kontrol edin.');
         }
 
         // ==========================================
@@ -1300,6 +1039,7 @@
         // FIREBASE OPERATIONS
         // ==========================================
         
+        // Gerçek zamanlı dinleme başlat
         function initRealtimeListener() {
             if (!db) return;
             
@@ -1322,6 +1062,7 @@
                 });
         }
 
+        // Şirket kaydet/güncelle
         async function saveCompany(companyData) {
             if (!db) {
                 alert('Firebase bağlantısı yok!');
@@ -1330,12 +1071,14 @@
             
             try {
                 if (companyData.id && currentEditId) {
+                    // Güncelleme
                     await db.collection('companies').doc(companyData.id).update({
                         ...companyData,
                         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
                     });
                     console.log('✅ Şirket güncellendi');
                 } else {
+                    // Yeni ekleme
                     delete companyData.id;
                     await db.collection('companies').add({
                         ...companyData,
@@ -1352,6 +1095,7 @@
             }
         }
 
+        // Şirket sil
         async function deleteCompanyFromDB(id) {
             if (!db) return false;
             
@@ -1366,6 +1110,7 @@
             }
         }
 
+        // Anlaşma durumunu güncelle
         async function updateContractStatus(id, status) {
             if (!db) return false;
             
@@ -1501,7 +1246,62 @@
         
         async function initApp() {
             setupEventListeners();
-            initRealtimeListener();
+            
+            if (db) {
+                // Eğer veri yoksa örnek verileri yükle
+                const snapshot = await db.collection('companies').limit(1).get();
+                if (snapshot.empty) {
+                    await loadInitialData();
+                }
+                
+                // Gerçek zamanlı dinlemeyi başlat
+                initRealtimeListener();
+            } else {
+                updateStats();
+                renderCompanies();
+            }
+        }
+
+        // İlk veri yükleme
+        async function loadInitialData() {
+            const initialCompanies = [
+                {
+                    name: "TRABZON PORT",
+                    category: "teknoloji",
+                    contact: { person: "", phone: "", email: "" },
+                    address: "İstanbul",
+                    employees: 100,
+                    priority: "high",
+                    contractStatus: "target",
+                    notes: "Hedef Şirket - Bağlantı kurulacak"
+                },
+                {
+                    name: "VEGA SIGORTA",
+                    category: "finans",
+                    contact: { person: "", phone: "0212 573 01 11", email: "info@vegasigorta.com" },
+                    address: "İstanbul",
+                    employees: 50,
+                    priority: "high",
+                    contractStatus: "target",
+                    notes: "Hedef Şirket - Great Place to Work listesinde"
+                },
+                {
+                    name: "CODEWAY",
+                    category: "teknoloji",
+                    contact: { person: "", phone: "", email: "" },
+                    address: "İstanbul",
+                    employees: 450,
+                    priority: "high",
+                    contractStatus: "target",
+                    notes: "Hedef Şirket - Great Place to Work 2025"
+                }
+            ];
+
+            for (const company of initialCompanies) {
+                await saveCompany(company);
+            }
+            
+            console.log('✅ İlk veriler yüklendi');
         }
 
         function setupEventListeners() {
@@ -1729,3 +1529,19 @@
                             ${company.contractStatus === 'active' ? '❌ İptal Et' : '✅ Anlaşma Yap'}
                         </button>
                         <button class="action-btn" onclick="openModal('${company.id}')">✏️ Düzenle</button>
+                        <button class="action-btn" onclick="deleteCompany('${company.id}')">🗑️ Sil</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Sayfa yüklendiğinde başlat
+        window.addEventListener('DOMContentLoaded', initApp);
+        
+        // Sayfa kapanırken dinlemeyi durdur
+        window.addEventListener('beforeunload', () => {
+            if (unsubscribe) unsubscribe();
+        });
+    </script>
+</body>
+</html>
